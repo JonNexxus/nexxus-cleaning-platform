@@ -1,103 +1,257 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import { 
+  Sparkles, 
+  Shield, 
+  Clock, 
+  Star, 
+  CheckCircle, 
+  ArrowRight,
+  Users,
+  Award,
+  Leaf
+} from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+              Get Your Home
+              <span className="block text-primary-200">Sparkling Clean</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
+              Professional, eco-friendly cleaning services you can trust. 
+              Book online in minutes and enjoy a spotless home.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+              <Link
+                href="/login?role=homeowner"
+                className="btn-primary text-lg px-8 py-4 inline-flex items-center space-x-2"
+              >
+                <span>Get a Cleaning Quote Today</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <button className="btn-secondary text-lg px-8 py-4">
+                Learn More
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Getting your home cleaned is as easy as 1-2-3
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Clock className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                1. Request Quote
+              </h3>
+              <p className="text-gray-600">
+                Tell us about your home and cleaning needs. Get an instant quote 
+                and choose your preferred date and time.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                2. Schedule Cleaning
+              </h3>
+              <p className="text-gray-600">
+                We'll match you with a trusted, vetted cleaner and confirm 
+                your appointment. Track everything in real-time.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                3. Sit Back and Relax
+              </h3>
+              <p className="text-gray-600">
+                Your cleaner arrives on time with all supplies. Enjoy your 
+                spotless home and leave us a review!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Highlights */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Nexxus Cleaning?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              We're committed to providing the best cleaning experience possible
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Leaf className="w-8 h-8 text-success-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Eco-Friendly Products
+              </h3>
+              <p className="text-gray-600">
+                We use only environmentally safe, non-toxic cleaning products 
+                that are safe for your family and pets.
+              </p>
+            </div>
+
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Shield className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Trusted Professionals
+              </h3>
+              <p className="text-gray-600">
+                All our cleaners are thoroughly vetted, insured, and trained 
+                to deliver exceptional service every time.
+              </p>
+            </div>
+
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Award className="w-8 h-8 text-success-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Satisfaction Guarantee
+              </h3>
+              <p className="text-gray-600">
+                Not happy with your cleaning? We'll make it right or your 
+                money back. Your satisfaction is our priority.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              What Our Customers Say
+            </h2>
+            <p className="text-xl text-gray-600">
+              Don't just take our word for it
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-600 mb-4">
+                "Absolutely amazing service! My house has never been cleaner. 
+                The team was professional, punctual, and thorough. Highly recommend!"
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-primary-600 font-semibold">SM</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Sarah Martinez</p>
+                  <p className="text-sm text-gray-500">Phoenix, AZ</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-600 mb-4">
+                "I love how easy it is to book and the cleaners always do an 
+                incredible job. The eco-friendly products are a huge plus for our family."
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-primary-600 font-semibold">MJ</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Michael Johnson</p>
+                  <p className="text-sm text-gray-500">Scottsdale, AZ</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-600 mb-4">
+                "Reliable, affordable, and they do an excellent job every time. 
+                I've been using Nexxus for over a year and couldn't be happier."
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-primary-600 font-semibold">LD</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Lisa Davis</p>
+                  <p className="text-sm text-gray-500">Tempe, AZ</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Get Started?
+          </h2>
+          <p className="text-xl text-primary-100 mb-8">
+            Join thousands of satisfied customers who trust Nexxus Cleaning 
+            with their homes.
+          </p>
+          <Link
+            href="/login?role=homeowner"
+            className="btn-secondary text-lg px-8 py-4 inline-flex items-center space-x-2"
+          >
+            <span>Book Your First Cleaning</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

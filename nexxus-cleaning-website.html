@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexxus Cleaning Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nexxus: {
+                            dark: '#1a1a1a',
+                            gray: '#2a2a2a',
+                            light: '#f8f8f8',
+                            accent: '#4a90e2',
+                            green: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary {
+            @apply bg-nexxus-dark hover:bg-nexxus-gray text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105;
+        }
+        .btn-secondary {
+            @apply bg-transparent hover:bg-nexxus-dark text-nexxus-dark hover:text-white font-semibold py-3 px-8 rounded-lg border-2 border-nexxus-dark transition-all duration-300;
+        }
+        .card {
+            @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-8 transition-all duration-300 hover:shadow-xl;
+        }
+        .input-field {
+            @apply w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nexxus-accent focus:border-nexxus-accent transition-all duration-200 bg-white;
+        }
+        .hidden { display: none !important; }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        }
+        .stat-card {
+            @apply bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center;
+        }
+    </style>
+</head>
+<body class="bg-nexxus-light font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-nexxus-dark rounded-xl flex items-center justify-center">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold text-nexxus-dark">Nexxus</span>
+                        <div class="text-sm text-gray-600 -mt-1">Cleaning Solutions</div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-nexxus-dark font-medium transition-colors">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-nexxus-dark font-medium transition-colors">Services</a>
+                    <a href="#" class="text-gray-700 hover:text-nexxus-dark font-medium transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-nexxus-dark font-medium transition-colors">Contact</a>
+                </div>
+                
+                <!-- Login Button - Always Visible -->
+                <div class="relative">
+                    <button id="loginBtn" class="btn-primary">Login</button>
+                    <div id="loginDropdown" class="hidden absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-3 z-50">
+                        <button onclick="showLogin('homeowner')" class="w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                            <span class="font-medium">Homeowner</span>
+                        </button>
+                        <button onclick="showLogin('cleaner')" class="w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors">
+                            <i data-lucide="user-check" class="w-5 h-5"></i>
+                            <span class="font-medium">Cleaner</span>
+                        </button>
+                        <button onclick="showLogin('admin')" class="w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors">
+                            <i data-lucide="settings" class="w-5 h-5"></i>
+                            <span class="font-medium">Admin</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div id="landingPage" class="animate-fade-in">
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <div class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                            ✨ Professional Cleaning Services
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-black mb-8 leading-tight">
+                            Cleaning?<br>
+                            <span class="text-nexxus-accent">Yes.</span><br>
+                            We Do It All.
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg">
+                            Professional residential cleaning services you can trust. Eco-friendly products, 
+                            vetted cleaners, and satisfaction guaranteed.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <button class="bg-white text-nexxus-dark hover:bg-gray-100 font-bold py-4 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 text-lg">
+                                Get A Quote Today
+                            </button>
+                            <button class="border-2 border-white text-white hover:bg-white hover:text-nexxus-dark font-bold py-4 px-10 rounded-lg transition-all duration-300 text-lg">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="stat-card">
+                            <div class="text-center">
+                                <i data-lucide="home" class="w-20 h-20 text-white mx-auto mb-6"></i>
+                                <h3 class="text-3xl font-bold mb-3">1000+ Families</h3>
+                                <p class="text-gray-300 text-lg">Trust our cleaning services</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-nexxus-dark mb-2">500+</div>
+                        <div class="text-gray-600 font-medium">Homes Cleaned</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-nexxus-dark mb-2">4.9</div>
+                        <div class="text-gray-600 font-medium">Rating out of 5</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-nexxus-dark mb-2">50+</div>
+                        <div class="text-gray-600 font-medium">Professional Cleaners</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-nexxus-dark mb-2">100%</div>
+                        <div class="text-gray-600 font-medium">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-24 bg-nexxus-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl lg:text-5xl font-black text-nexxus-dark mb-6">
+                        Experience the Benefits<br>
+                        of Our Expertise
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Getting your home cleaned is as easy as 1-2-3
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="card text-center group">
+                        <div class="w-20 h-20 bg-nexxus-dark rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="calendar" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">1. Request Quote</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Tell us about your home and cleaning needs. Get an instant, transparent quote.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center group">
+                        <div class="w-20 h-20 bg-nexxus-dark rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="clock" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">2. Schedule Cleaning</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Choose your preferred date and time. We'll match you with a trusted, vetted cleaner.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center group">
+                        <div class="w-20 h-20 bg-nexxus-dark rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="check-circle" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">3. Sit Back & Relax</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Your cleaner arrives on time and transforms your home. Satisfaction guaranteed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl lg:text-5xl font-black text-nexxus-dark mb-6">
+                        Expertise That Drives Quality
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        We're committed to providing the best cleaning experience with professional standards
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="card text-center group">
+                        <div class="w-16 h-16 bg-nexxus-green/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="leaf" class="w-8 h-8 text-nexxus-green"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">Eco-Friendly Products</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Safe for your family and pets. We use only environmentally responsible cleaning products.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center group">
+                        <div class="w-16 h-16 bg-nexxus-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="shield-check" class="w-8 h-8 text-nexxus-accent"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">Trusted Professionals</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            All cleaners are background-checked, insured, and highly rated by customers.
+                        </p>
+                    </div>
+                    
+                    <div class="card text-center group">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="star" class="w-8 h-8 text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-nexxus-dark mb-6">Satisfaction Guarantee</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Not happy? We'll make it right or your money back. Your satisfaction is our priority.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-24 bg-nexxus-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl lg:text-5xl font-black text-nexxus-dark mb-6">What Our Customers Say</h2>
+                    <p class="text-xl text-gray-600">Don't just take our word for it</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="card">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                            "Absolutely amazing service! My house has never been cleaner. The team was professional and thorough."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-nexxus-accent font-bold text-lg">SJ</span>
+                            </div>
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">Sarah Johnson</p>
+                                <p class="text-gray-500">Phoenix, AZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                            "Reliable, affordable, and eco-friendly. I've been using Nexxus for 6 months and couldn't be happier!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-nexxus-accent font-bold text-lg">MW</span>
+                            </div>
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">Mike Wilson</p>
+                                <p class="text-gray-500">Scottsdale, AZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                                <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                            "The booking process was so easy, and the cleaner was fantastic. Will definitely use again!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-nexxus-accent font-bold text-lg">EB</span>
+                            </div>
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">Emily Brown</p>
+                                <p class="text-gray-500">Tempe, AZ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-10 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h2 id="loginTitle" class="text-3xl font-bold text-nexxus-dark">Login</h2>
+                <button onclick="hideLogin()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-nexxus-dark mb-3">Email</label>
+                    <input type="email" id="loginEmail" class="input-field" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="mb-8">
+                    <label class="block text-sm font-bold text-nexxus-dark mb-3">Password</label>
+                    <input type="password" id="loginPassword" class="input-field" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="w-full btn-primary text-lg py-4">Login</button>
+            </form>
+            
+            <div class="mt-6 p-6 bg-nexxus-accent/5 rounded-xl">
+                <p class="text-sm text-nexxus-dark font-bold mb-3">Demo Credentials:</p>
+                <p class="text-sm text-gray-600" id="demoCredentials"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Pages -->
+    <div id="homeownerDashboard" class="hidden animate-fade-in min-h-screen bg-nexxus-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-12">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-4xl font-black text-nexxus-dark">Homeowner Dashboard</h1>
+                        <p class="text-gray-600 mt-2 text-lg">Welcome back! Manage your cleaning services here.</p>
+                    </div>
+                    <button onclick="logout()" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-accent/10 rounded-2xl">
+                            <i data-lucide="calendar" class="w-8 h-8 text-nexxus-accent"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Next Cleaning</p>
+                            <p class="text-3xl font-black text-nexxus-dark">Jan 15</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-green/10 rounded-2xl">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-nexxus-green"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Completed</p>
+                            <p class="text-3xl font-black text-nexxus-dark">12</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-blue-100 rounded-2xl">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Total Spent</p>
+                            <p class="text-3xl font-black text-nexxus-dark">$1,440</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-yellow-100 rounded-2xl">
+                            <i data-lucide="star" class="w-8 h-8 text-yellow-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Avg Rating</p>
+                            <p class="text-3xl font-black text-nexxus-dark">4.9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Quick Actions</h3>
+                    <div class="space-y-4">
+                        <button class="w-full btn-primary text-left flex items-center">
+                            <i data-lucide="plus" class="w-6 h-6 mr-4"></i>
+                            Book New Cleaning
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="message-circle" class="w-6 h-6 mr-4"></i>
+                            Message Cleaner
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="credit-card" class="w-6 h-6 mr-4"></i>
+                            Payment History
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="camera" class="w-6 h-6 mr-4"></i>
+                            View Property Photos
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Upcoming Cleanings</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">January 15, 2025</p>
+                                <p class="text-gray-600">10:00 AM - Jane Smith</p>
+                                <p class="text-sm text-gray-500">Deep cleaning service</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-blue-600 bg-blue-100">
+                                Confirmed
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">January 22, 2025</p>
+                                <p class="text-gray-600">2:00 PM - Bob Johnson</p>
+                                <p class="text-sm text-gray-500">Regular cleaning</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-yellow-600 bg-yellow-100">
+                                Pending
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">January 29, 2025</p>
+                                <p class="text-gray-600">11:00 AM - Sarah Davis</p>
+                                <p class="text-sm text-gray-500">Move-out cleaning</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-green-600 bg-green-100">
+                                Scheduled
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cleanerDashboard" class="hidden animate-fade-in min-h-screen bg-nexxus-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-12">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-4xl font-black text-nexxus-dark">Cleaner Dashboard</h1>
+                        <p class="text-gray-600 mt-2 text-lg">Manage your cleaning schedule and earnings.</p>
+                    </div>
+                    <button onclick="logout()" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-accent/10 rounded-2xl">
+                            <i data-lucide="calendar" class="w-8 h-8 text-nexxus-accent"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Today's Jobs</p>
+                            <p class="text-3xl font-black text-nexxus-dark">3</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-green/10 rounded-2xl">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-nexxus-green"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">This Week</p>
+                            <p class="text-3xl font-black text-nexxus-dark">$420</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-blue-100 rounded-2xl">
+                            <i data-lucide="star" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Rating</p>
+                            <p class="text-3xl font-black text-nexxus-dark">4.8</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-purple-100 rounded-2xl">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-purple-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Completed</p>
+                            <p class="text-3xl font-black text-nexxus-dark">45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Today's Schedule</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-6 bg-blue-50 rounded-xl border-l-4 border-nexxus-accent">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">10:00 AM - Sarah Johnson</p>
+                                <p class="text-gray-600">123 Main St, Phoenix</p>
+                                <p class="text-sm text-gray-500">Deep cleaning • 3 hours</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-blue-600 bg-blue-100">
+                                Next
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">2:00 PM - Mike Wilson</p>
+                                <p class="text-gray-600">456 Oak Ave, Scottsdale</p>
+                                <p class="text-sm text-gray-500">Regular cleaning • 2 hours</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-gray-600 bg-gray-100">
+                                Scheduled
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">5:00 PM - Emily Brown</p>
+                                <p class="text-gray-600">789 Pine St, Tempe</p>
+                                <p class="text-sm text-gray-500">Move-out cleaning • 4 hours</p>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-gray-600 bg-gray-100">
+                                Scheduled
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Quick Actions</h3>
+                    <div class="space-y-4">
+                        <button class="w-full btn-primary text-left flex items-center">
+                            <i data-lucide="camera" class="w-6 h-6 mr-4"></i>
+                            Upload Before/After Photos
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="message-circle" class="w-6 h-6 mr-4"></i>
+                            Message Homeowner
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="dollar-sign" class="w-6 h-6 mr-4"></i>
+                            View Earnings History
+                        </button>
+                        <button class="w-full btn-secondary text-left flex items-center">
+                            <i data-lucide="clock" class="w-6 h-6 mr-4"></i>
+                            Update Availability
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminDashboard" class="hidden animate-fade-in min-h-screen bg-nexxus-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-12">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-4xl font-black text-nexxus-dark">Admin Dashboard</h1>
+                        <p class="text-gray-600 mt-2 text-lg">Manage your cleaning business operations.</p>
+                    </div>
+                    <button onclick="logout()" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-accent/10 rounded-2xl">
+                            <i data-lucide="calendar" class="w-8 h-8 text-nexxus-accent"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Total Bookings</p>
+                            <p class="text-3xl font-black text-nexxus-dark">156</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-nexxus-green/10 rounded-2xl">
+                            <i data-lucide="users" class="w-8 h-8 text-nexxus-green"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Active Cleaners</p>
+                            <p class="text-3xl font-black text-nexxus-dark">12</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-green-100 rounded-2xl">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Total Revenue</p>
+                            <p class="text-3xl font-black text-nexxus-dark">$18,750</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-yellow-100 rounded-2xl">
+                            <i data-lucide="alert-triangle" class="w-8 h-8 text-yellow-600"></i>
+                        </div>
+                        <div class="ml-6">
+                            <p class="text-sm font-bold text-gray-600 uppercase tracking-wide">Pending</p>
+                            <p class="text-3xl font-black text-nexxus-dark">8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Pending Approvals</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-400">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">John Doe</p>
+                                <p class="text-gray-600">Jan 8, 10:00 AM</p>
+                                <p class="text-sm text-gray-500">123 Main St, Phoenix • Deep cleaning</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="btn-primary text-sm px-4 py-2">Approve</button>
+                                <button class="btn-secondary text-sm px-4 py-2">Decline</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-400">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">Sarah Johnson</p>
+                                <p class="text-gray-600">Jan 9, 2:00 PM</p>
+                                <p class="text-sm text-gray-500">456 Oak Ave, Scottsdale • Regular cleaning</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="btn-primary text-sm px-4 py-2">Approve</button>
+                                <button class="btn-secondary text-sm px-4 py-2">Decline</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-400">
+                            <div>
+                                <p class="font-bold text-nexxus-dark text-lg">Mike Wilson</p>
+                                <p class="text-gray-600">Jan 10, 11:00 AM</p>
+                                <p class="text-sm text-gray-500">789 Pine St, Tempe • Move-out cleaning</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="btn-primary text-sm px-4 py-2">Approve</button>
+                                <button class="btn-secondary text-sm px-4 py-2">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-nexxus-dark mb-8">Top Cleaners</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="user-check" class="w-6 h-6 text-nexxus-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-nexxus-dark text-lg">Jane Smith</p>
+                                    <p class="text-gray-600">45 jobs • 4.9★</p>
+                                </div>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-green-600 bg-green-100">
+                                Active
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="user-check" class="w-6 h-6 text-nexxus-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-nexxus-dark text-lg">Bob Johnson</p>
+                                    <p class="text-gray-600">38 jobs • 4.7★</p>
+                                </div>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-green-600 bg-green-100">
+                                Active
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-6 bg-nexxus-light rounded-xl">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-nexxus-accent/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="user-check" class="w-6 h-6 text-nexxus-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-nexxus-dark text-lg">Sarah Davis</p>
+                                    <p class="text-gray-600">32 jobs • 4.8★</p>
+                                </div>
+                            </div>
+                            <span class="px-4 py-2 text-sm font-bold rounded-full text-green-600 bg-green-100">
+                                Active
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        let currentUserRole = null;
+        
+        // Login dropdown functionality
+        document.getElementById('loginBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('loginDropdown');
+            dropdown.classList.toggle('hidden');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const loginBtn = document.getElementById('loginBtn');
+            const dropdown = document.getElementById('loginDropdown');
+            
+            if (!loginBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+        
+        function showLogin(role) {
+            currentUserRole = role;
+            const modal = document.getElementById('loginModal');
+            const title = document.getElementById('loginTitle');
+            const credentials = document.getElementById('demoCredentials');
+            
+            title.textContent = `${role.charAt(0).toUpperCase() + role.slice(1)} Login`;
+            
+            // Set demo credentials
+            const demoEmails = {
+                homeowner: 'demo@homeowner.com',
+                cleaner: 'demo@cleaner.com',
+                admin: 'demo@admin.com'
+            };
+            
+            credentials.textContent = `Email: ${demoEmails[role]} | Password: demo123`;
+            
+            modal.classList.remove('hidden');
+            document.getElementById('loginDropdown').classList.add('hidden');
+            
+            // Pre-fill the form for easier testing
+            document.getElementById('loginEmail').value = demoEmails[role];
+            document.getElementById('loginPassword').value = 'demo123';
+        }
+        
+        function hideLogin() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            currentUserRole = null;
+        }
+        
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Demo authentication
+            const validCredentials = {
+                'demo@homeowner.com': { password: 'demo123', role: 'homeowner' },
+                'demo@cleaner.com': { password: 'demo123', role: 'cleaner' },
+                'demo@admin.com': { password: 'demo123', role: 'admin' }
+            };
+            
+            if (validCredentials[email] && validCredentials[email].password === password) {
+                const role = validCredentials[email].role;
+                
+                // Hide login modal and landing page
+                hideLogin();
+                document.getElementById('landingPage').classList.add('hidden');
+                
+                // Show appropriate dashboard
+                document.getElementById(`${role}Dashboard`).classList.remove('hidden');
+                
+                // Update navigation
+                const loginBtn = document.getElementById('loginBtn');
+                loginBtn.textContent = 'Logout';
+                loginBtn.onclick = logout;
+                
+                // Re-initialize icons for the new content
+                setTimeout(() => lucide.createIcons(), 100);
+            } else {
+                alert('Invalid credentials. Please use the demo credentials provided.');
+            }
+        }
+        
+        function logout() {
+            // Hide all dashboards
+            document.getElementById('homeownerDashboard').classList.add('hidden');
+            document.getElementById('cleanerDashboard').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            
+            // Show landing page
+            document.getElementById('landingPage').classList.remove('hidden');
+            
+            // Reset navigation
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.textContent = 'Login';
+            loginBtn.onclick = null;
+            
+            // Re-add the dropdown functionality
+            loginBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('loginDropdown');
+                dropdown.classList.toggle('hidden');
+            });
+            
+            // Clear form
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            
+            currentUserRole = null;
+            
+            // Re-initialize icons
+            lucide.createIcons();
+        }
+        
+        // Mobile menu functionality
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            // Mobile menu implementation would go here
+            alert('Mobile menu functionality would be implemented here');
+        });
+        
+        // Initialize icons on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
